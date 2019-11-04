@@ -18,10 +18,11 @@ public class LobbyController : MonoBehaviourPunCallbacks
     private int RoomSize;
 
     private PhotonView pv;
+    public GameObject player;
 
     private void Start()
     {
-        pv = GetComponent<PhotonView>();
+        pv = player.GetComponent<PhotonView>();
     }
 
     public override void OnConnectedToMaster()
@@ -34,11 +35,13 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void RankedStart()
     {
+        if (pv.IsMine) { 
         rankedSearchButton.SetActive(false);
         rankedCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
         Debug.Log("Ranked Start");
         MultiplayerSettings.mps.ranked = true;
+            }
     }
 
     public void QuickStart()
