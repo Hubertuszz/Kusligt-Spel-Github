@@ -40,9 +40,9 @@ public class LobbyController : MonoBehaviourPunCallbacks
         Debug.Log("Ranked Start");
         if (pv.IsMine)
         {
+            
             MultiplayerSettings.mps.ranked = true;
         }
-        
     }
 
     public void QuickStart()
@@ -55,7 +55,6 @@ public class LobbyController : MonoBehaviourPunCallbacks
         {
             MultiplayerSettings.mps.ranked = false;
         }
-        
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
