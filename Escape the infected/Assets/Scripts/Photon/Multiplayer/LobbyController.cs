@@ -16,9 +16,14 @@ public class LobbyController : MonoBehaviourPunCallbacks
     private GameObject quickCancelButton;
     [SerializeField]
     private int RoomSize;
-    
 
-    
+    private PhotonView pv;
+
+    private void Start()
+    {
+        pv = GetComponent<PhotonView>();
+    }
+
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -33,7 +38,11 @@ public class LobbyController : MonoBehaviourPunCallbacks
         rankedCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
         Debug.Log("Ranked Start");
-        MultiplayerSettings.mps.ranked = true;
+        if (pv.IsMine)
+        {
+            MultiplayerSettings.mps.ranked = true;
+        }
+        
     }
 
     public void QuickStart()
@@ -42,7 +51,11 @@ public class LobbyController : MonoBehaviourPunCallbacks
         quickCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
         Debug.Log("Quick Start");
-        MultiplayerSettings.mps.ranked = false;
+        if (pv.IsMine)
+        {
+            MultiplayerSettings.mps.ranked = false;
+        }
+        
     }
 
     public override void OnJoinRandomFailed(short returnCode, string message)
