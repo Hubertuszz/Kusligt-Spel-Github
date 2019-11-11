@@ -35,14 +35,12 @@ public class LobbyController : MonoBehaviourPunCallbacks
 
     public void RankedStart()
     {
-        if (pv.IsMine) { 
         rankedSearchButton.SetActive(false);
         rankedCancelButton.SetActive(true);
         PhotonNetwork.JoinRandomRoom();
         Debug.Log("Ranked Start");
         MultiplayerSettings.mps.ranked = true;
-            }
-    }
+        StartCoroutine(Test());    }
 
     public void QuickStart()
     {
@@ -86,5 +84,10 @@ public class LobbyController : MonoBehaviourPunCallbacks
         quickCancelButton.SetActive(false);
         quickStartButton.SetActive(true);
         PhotonNetwork.LeaveRoom();
+    }
+    IEnumerator Test()
+    {
+        yield return new WaitForSeconds(1);
+        MultiplayerSettings.mps.ranked = false;
     }
 }
