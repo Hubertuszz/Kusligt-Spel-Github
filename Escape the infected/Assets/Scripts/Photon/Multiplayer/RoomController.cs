@@ -30,7 +30,7 @@ public class RoomController : MonoBehaviourPunCallbacks
         Debug.Log("Joined Room");
         if (MultiplayerSettings.mps.ranked)
         {
-            SceneManager.LoadScene(waitingRoomSceneIndex);
+            PhotonNetwork.LoadLevel(waitingRoomSceneIndex);
         }
         else
             StartGame();
