@@ -15,7 +15,13 @@ public class AvatarSetup : MonoBehaviour
     public Camera myCamera;
     public AudioListener myAL;
 
+public string INFECTED = "";
     // Start is called before the first frame update
+public int RandomNumber(int min, int max)  
+    {  
+        System.Random random = new System.Random();  
+        return random.Next(min, max);  
+    } 
     void Start()
     {
         pv = GetComponent<PhotonView>();
@@ -27,6 +33,16 @@ public class AvatarSetup : MonoBehaviour
         {
             Destroy(myCamera);
             Destroy(myAL);
+        }
+
+        if(pv.Owner.NickName == "luks" && pv.IsMine)
+        {
+            Debug.Log("LUKAS JA DU");
+            pv.RPC("RPC_AddCharacter", RpcTarget.AllBuffered, 1);
+        }
+        else
+        {
+            pv.RPC("RPC_AddCharacter", RpcTarget.AllBuffered, 0);
         }
     }
 

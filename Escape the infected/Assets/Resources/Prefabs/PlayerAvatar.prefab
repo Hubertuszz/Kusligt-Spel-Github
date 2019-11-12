@@ -184,6 +184,7 @@ MonoBehaviour:
   playerDamge: 20
   myCamera: {fileID: 6980086237636786998}
   myAL: {fileID: 5593610145029952929}
+  INFECTED: 
 --- !u!114 &6597868245761608071
 MonoBehaviour:
   m_ObjectHideFlags: 0
