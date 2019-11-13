@@ -22,6 +22,21 @@ public int RandomNumber(int min, int max)
         System.Random random = new System.Random();  
         return random.Next(min, max);  
     } 
+    int childs = 0;
+    void Update()
+    {
+        if(pv.Owner.NickName == "luks" && pv.IsMine)
+        {
+            childs = transform.childCount;
+            for (int i = childs - 1; i >= 0; i--)
+            {
+                if(transform.GetChild(i).gameObject.name[0] == 'I')
+                {
+                    PhotonNetwork.Destroy(transform.GetChild(i).gameObject);
+                }
+            }
+        }
+    }
     void Start()
     {
         pv = GetComponent<PhotonView>();
@@ -44,6 +59,7 @@ public int RandomNumber(int min, int max)
         {
             pv.RPC("RPC_AddCharacter", RpcTarget.AllBuffered, 0);
         }
+
     }
 
     [PunRPC]
