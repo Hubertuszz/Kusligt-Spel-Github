@@ -16,7 +16,6 @@ public class AvatarSetup : MonoBehaviour
     public AudioListener myAL;
 
     // Start is called before the first frame update
-<<<<<<< HEAD
 public int RandomNumber(int min, int max)  
     {  
         System.Random random = new System.Random();  
@@ -37,7 +36,6 @@ public int RandomNumber(int min, int max)
             }
         }
     }
-=======
 
     void Start()
     {
