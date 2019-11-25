@@ -3,7 +3,6 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
@@ -17,10 +16,9 @@ public class LobbyController : MonoBehaviourPunCallbacks
     private GameObject quickCancelButton;
     [SerializeField]
     private int RoomSize;
-    public InputField nickname;
+
     private PhotonView pv;
     public GameObject player;
-    public GameObject rankedMenu;
 
     private void Start()
     {
@@ -35,29 +33,14 @@ public class LobbyController : MonoBehaviourPunCallbacks
         
     }
 
-    public void ToRanked()
-    {
-        rankedMenu.SetActive(true);
-    }
-
-    public void ExitRanked()
-    {
-        rankedMenu.SetActive(false);
-    }
-
     public void RankedStart()
     {
-        if(nickname.text != "")
-        {
-            PhotonNetwork.LocalPlayer.NickName = nickname.text;
-            rankedSearchButton.SetActive(false);
-            rankedCancelButton.SetActive(true);
-            PhotonNetwork.JoinRandomRoom();
-            Debug.Log("Ranked Start");
-            MultiplayerSettings.mps.ranked = true;
-            StartCoroutine(Test());    
-        }
-    }
+        rankedSearchButton.SetActive(false);
+        rankedCancelButton.SetActive(true);
+        PhotonNetwork.JoinRandomRoom();
+        Debug.Log("Ranked Start");
+        MultiplayerSettings.mps.ranked = true;
+        StartCoroutine(Test());    }
 
     public void QuickStart()
     {

@@ -3,7 +3,6 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class WaitingRoom : MonoBehaviourPunCallbacks
 {
@@ -18,7 +17,7 @@ public class WaitingRoom : MonoBehaviourPunCallbacks
     private int roomSize;
     [SerializeField]
     private int minPlayersToStart;
-    public Text m_Text;
+
     [SerializeField]
     private Text roomCountDisplay;
     [SerializeField]
@@ -37,8 +36,6 @@ public class WaitingRoom : MonoBehaviourPunCallbacks
     [SerializeField]
     private float maxFullGameWaitTime;
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -56,7 +53,7 @@ public class WaitingRoom : MonoBehaviourPunCallbacks
         roomSize = PhotonNetwork.CurrentRoom.MaxPlayers;
         roomCountDisplay.text = playerCount + ":" + roomSize;
 
-        if(playerCount == 2)
+        if(playerCount == roomSize)
         {
             readyToStart = true;
         }else if (playerCount >= minPlayersToStart)
@@ -92,34 +89,10 @@ public class WaitingRoom : MonoBehaviourPunCallbacks
     {
         PlayerCountUpdate();
     }
-    List<string> playerList = new List<string>();
+
     private void Update()
     {
         WaitingForMorePlayers();
-
-         foreach (var player in PhotonNetwork.PlayerList)
-         {
-             playerList.Add(player.NickName + "\n");
-         }
-
-         switch(playerCount)
-         {
-            case 1:
-                m_Text.text = playerList[0].ToString();
-                break;
-            case 2:
-                m_Text.text = playerList[0].ToString() + playerList[1].ToString();
-                break;
-            case 3:
-                m_Text.text = playerList[0].ToString() + playerList[1].ToString() + playerList[2].ToString();
-                break;
-            case 4:
-                m_Text.text = playerList[0].ToString() + playerList[1].ToString() + playerList[2].ToString() + playerList[3].ToString();
-                break;
-            case 5:
-                m_Text.text = playerList[0].ToString() + playerList[1].ToString() + playerList[2].ToString() + playerList[3].ToString() + playerList[4].ToString();
-                break;
-         }
     }
 
     void WaitingForMorePlayers()
@@ -156,8 +129,6 @@ public class WaitingRoom : MonoBehaviourPunCallbacks
         notFullGameTimer = maxWaitTime;
         fullGameTimer = maxFullGameWaitTime;
     }
-
-     
 
     void StartGame()
     {
