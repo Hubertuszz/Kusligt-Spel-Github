@@ -17,6 +17,7 @@ public class AvatarSetup : MonoBehaviour
 
     // Start is called before the first frame update
 <<<<<<< HEAD
+<<<<<<< HEAD
 public int RandomNumber(int min, int max)  
     {  
         System.Random random = new System.Random();  
@@ -39,6 +40,8 @@ public int RandomNumber(int min, int max)
     }
 =======
 >>>>>>> parent of 8585d5a... test
+=======
+>>>>>>> parent of 8585d5a... test
     void Start()
     {
         pv = GetComponent<PhotonView>();
@@ -52,6 +55,7 @@ public int RandomNumber(int min, int max)
             Destroy(myAL);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         if(pv.Owner.NickName == "luks" && pv.IsMine)
         {
@@ -63,6 +67,8 @@ public int RandomNumber(int min, int max)
             pv.RPC("RPC_AddCharacter", RpcTarget.AllBuffered, 0);
         }
 
+=======
+>>>>>>> parent of 8585d5a... test
 =======
 >>>>>>> parent of 8585d5a... test
     }
